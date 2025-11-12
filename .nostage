@@ -1,7 +1,8 @@
 {
   "files": [
     "debug.js",
-    "test-output.txt"
+    "test-output.txt",
+    "debug2.js"
   ],
   "patterns": []
 }
