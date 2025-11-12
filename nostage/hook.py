@@ -33,13 +33,22 @@ def unstage_file(filepath: str):
         filepath: Path to file to unstage
     """
     try:
+        # Try with HEAD first (for normal commits)
         subprocess.run(
             ["git", "reset", "HEAD", filepath],
             capture_output=True,
             check=True
         )
-    except subprocess.CalledProcessError as e:
-        print(f"Warning: Failed to unstage {filepath}: {e}", file=sys.stderr)
+    except subprocess.CalledProcessError:
+        # If that fails (e.g., initial commit), use reset without HEAD
+        try:
+            subprocess.run(
+                ["git", "reset", filepath],
+                capture_output=True,
+                check=True
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Warning: Failed to unstage {filepath}: {e}", file=sys.stderr)
 
 
 def run_pre_commit_hook() -> int:
