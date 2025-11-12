@@ -4,5 +4,7 @@
     "test-output.txt",
     "debug2.js"
   ],
-  "patterns": []
+  "patterns": [
+    "*.scratch.py"
+  ]
 }
