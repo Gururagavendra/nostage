@@ -3,7 +3,6 @@
 [![PyPI version](https://badge.fury.io/py/nostage.svg)](https://pypi.org/project/nostage/)
 [![Python versions](https://img.shields.io/pypi/pyversions/nostage)](https://pypi.org/project/nostage/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://static.pepy.tech/badge/nostage)](https://pepy.tech/project/nostage)
 
 **Protect files from accidental Git commits - even when you `git add .`**
 
