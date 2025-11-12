@@ -52,3 +52,10 @@ debug*.js
 test-output.txt
 *.scratch.*
 feature.py
+
+# Private strategy and development files
+REDDIT_STRATEGY.md
+DEVELOPMENT_SUMMARY.md
+notes/
+ideas/
+*.private.*
