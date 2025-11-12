@@ -40,3 +40,15 @@ htmlcov/
 # OS
 .DS_Store
 Thumbs.db
+
+# PyPI credentials - NEVER COMMIT!
+.pypirc
+
+# NoStage config (local settings)
+.nostage
+
+# Test files
+debug*.js
+test-output.txt
+*.scratch.*
+feature.py
