@@ -9,7 +9,13 @@
 
 NoStage is a lightweight CLI tool that prevents specific files from being staged and committed, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your repository.
 
-## 🎯 Why NoStage?
+## � Demo
+
+[![asciicast](https://asciinema.org/a/FQn36CPFODFPRzzHMq40Z7CSQ.svg)](https://asciinema.org/a/FQn36CPFODFPRzzHMq40Z7CSQ)
+
+See NoStage in action! Click above to watch the demo.
+
+## �🎯 Why NoStage?
 
 Ever had this happen?
 
