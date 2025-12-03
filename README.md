@@ -6,15 +6,15 @@
 
 **Protect files from accidental Git commits - even when you `git add .`**
 
-NoStage is a lightweight CLI tool that prevents specific files from being staged and committed, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your repository.
+NoStage is a lightweight CLI tool that automatically unstages protected files when you commit, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your repository.
 
-## � Demo
+## 🎥 Demo
 
-[![asciicast](https://asciinema.org/a/FQn36CPFODFPRzzHMq40Z7CSQ.svg)](https://asciinema.org/a/FQn36CPFODFPRzzHMq40Z7CSQ)
+![NoStage Demo](nostage.gif)
 
-See NoStage in action! Click above to watch the demo.
+See NoStage in action!
 
-## �🎯 Why NoStage?
+## 🎯 Why NoStage?
 
 Ever had this happen?
 
@@ -180,10 +180,51 @@ nostage add test-data.json
 | `nostage status` | Show NoStage status |
 | `nostage uninstall` | Remove NoStage hook |
 
+> 💡 **Tip:** Run `nostage --help` for detailed usage information.
+
 ## ⚙️ Requirements
 
 - Python 3.7+
 - Git
+
+## 📁 The `.nostage` File
+
+NoStage stores your protected files and patterns in a `.nostage` file in your repository root. Since this is for personal use, add it to your `.gitignore`:
+
+```bash
+echo ".nostage" >> .gitignore
+```
+
+## ❓ FAQ
+
+<details>
+<summary><strong>Q: Does NoStage prevent files from being staged?</strong></summary>
+
+No. Files are staged normally with `git add`. NoStage uses a **pre-commit hook** that automatically unstages protected files right before the commit is finalized. The end result: protected files never make it into your commits.
+</details>
+
+<details>
+<summary><strong>Q: What if I have an existing pre-commit hook?</strong></summary>
+
+NoStage will detect existing hooks and append its logic. Your existing hooks will continue to work.
+</details>
+
+<details>
+<summary><strong>Q: Can I temporarily commit a protected file?</strong></summary>
+
+Yes! Simply remove protection, commit, then re-add protection:
+```bash
+nostage remove debug.js
+git add debug.js && git commit -m "Add debug.js"
+nostage add debug.js
+```
+</details>
+
+<details>
+<summary><strong>Q: What happens when I run `nostage uninstall`?</strong></summary>
+
+It removes the pre-commit hook. Your `.nostage` file remains intact, so you can reinstall anytime with `nostage init`.
+</details>
 
 ## 🤝 Contributing
 
