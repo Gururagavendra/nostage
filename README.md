@@ -4,9 +4,9 @@
 [![Python versions](https://img.shields.io/pypi/pyversions/nostage)](https://pypi.org/project/nostage/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**Protect files from accidental Git commits - even when you `git add .`**
+**Protect files from accidental Git commits**
 
-NoStage is a lightweight CLI tool that automatically unstages protected files when you commit, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your repository.
+NoStage is a lightweight CLI tool that automatically unstages protected files when you commit, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your remote repository.
 
 ## 🎥 Demo
 
