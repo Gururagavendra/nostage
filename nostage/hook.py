@@ -101,11 +101,40 @@ def install_hook():
 \"\"\"NoStage pre-commit hook - Auto-generated, do not edit manually.\"\"\"
 
 import sys
-import subprocess
+import os
 
-# Run nostage hook
-result = subprocess.run(["nostage", "hook"], capture_output=False)
-sys.exit(result.returncode)
+try:
+    from nostage.hook import run_pre_commit_hook
+    sys.exit(run_pre_commit_hook())
+except ImportError:
+    # NoStage was uninstalled via pip - clean up everything
+    print("⚠️  NoStage package not found (was it uninstalled?)")
+    print("🧹 Cleaning up...")
+    
+    # Remove this hook file
+    hook_path = os.path.abspath(__file__)
+    try:
+        os.remove(hook_path)
+        print("   ✓ Removed pre-commit hook")
+    except Exception as e:
+        print(f"   ✗ Could not remove hook: {e}")
+    
+    # Remove .nostage config file
+    try:
+        repo_root = os.path.dirname(os.path.dirname(os.path.dirname(hook_path)))
+        nostage_config = os.path.join(repo_root, '.nostage')
+        if os.path.exists(nostage_config):
+            os.remove(nostage_config)
+            print("   ✓ Removed .nostage config file")
+    except Exception as e:
+        print(f"   ✗ Could not remove .nostage: {e}")
+    
+    print("✅ NoStage cleanup complete. Commit will proceed normally.")
+    sys.exit(0)  # Don't block the commit
+except Exception as e:
+    print(f"⚠️  NoStage hook error: {e}")
+    print("   Continuing with commit...")
+    sys.exit(0)  # Don't block commits on errors
 """
         
         # Check if hook already exists

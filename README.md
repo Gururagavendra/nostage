@@ -226,6 +226,23 @@ nostage add debug.js
 It removes the pre-commit hook. Your `.nostage` file remains intact, so you can reinstall anytime with `nostage init`.
 </details>
 
+<details>
+<summary><strong>Q: How do I uninstall NoStage?</strong></summary>
+
+Just run:
+```bash
+pip uninstall nostage
+```
+
+That's it! The hook will automatically clean itself up (and remove the `.nostage` file) on your next commit.
+
+**For immediate cleanup (optional):**
+```bash
+nostage uninstall  # Removes hook and .nostage immediately
+pip uninstall nostage
+```
+</details>
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:

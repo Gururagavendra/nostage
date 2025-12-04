@@ -12,7 +12,7 @@ init(autoreset=True)
 
 
 @click.group()
-@click.version_option(version="0.1.0")
+@click.version_option(version="0.1.1")
 def main():
     """🛡️  NoStage - Protect files from accidental commits.
     
