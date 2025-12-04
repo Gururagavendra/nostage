@@ -2,6 +2,7 @@
 
 import click
 import sys
+import os
 from colorama import Fore, Style, init
 from pathlib import Path
 from .config import NoStageConfig
@@ -11,8 +12,33 @@ from .hook import install_hook, uninstall_hook, run_pre_commit_hook
 init(autoreset=True)
 
 
+def check_hook_installed():
+    """Check if pre-commit hook is installed and exit if not."""
+    try:
+        config = NoStageConfig()
+        hook_path = config.repo_root / ".git" / "hooks" / "pre-commit"
+        
+        if not hook_path.exists():
+            print(f"{Fore.RED}✗ NoStage is not initialized yet!{Style.RESET_ALL}")
+            print(f"\n   Please run: {Fore.GREEN}nostage init{Style.RESET_ALL}\n")
+            sys.exit(1)
+        
+        # Check if it's our hook
+        with open(hook_path, 'r') as f:
+            if "NoStage" not in f.read():
+                print(f"{Fore.RED}✗ NoStage hook not found!{Style.RESET_ALL}")
+                print(f"\n   Please run: {Fore.GREEN}nostage init{Style.RESET_ALL}\n")
+                sys.exit(1)
+        
+        return True
+    except RuntimeError as e:
+        # Not in a git repo
+        print(f"{Fore.RED}Error: {e}{Style.RESET_ALL}", file=sys.stderr)
+        sys.exit(1)
+
+
 @click.group()
-@click.version_option(version="0.1.1")
+@click.version_option(version="0.1.2")
 def main():
     """🛡️  NoStage - Protect files from accidental commits.
     
@@ -32,6 +58,8 @@ def add(files):
         nostage add debug.js test-output.txt
         nostage add scratch/*.py
     """
+    check_hook_installed()
+    
     try:
         config = NoStageConfig()
         added = []
@@ -66,6 +94,8 @@ def remove(files):
     Examples:
         nostage remove debug.js
     """
+    check_hook_installed()
+    
     try:
         config = NoStageConfig()
         removed = []
@@ -95,6 +125,8 @@ def remove(files):
 @main.command()
 def list():
     """List all protected files and patterns."""
+    check_hook_installed()
+    
     try:
         config = NoStageConfig()
         files = config.get_protected_files()
@@ -132,6 +164,8 @@ def pattern(pattern):
         nostage pattern "debug_*.py"
         nostage pattern "scratch/*"
     """
+    check_hook_installed()
+    
     try:
         config = NoStageConfig()
         
@@ -153,6 +187,8 @@ def remove_pattern(pattern):
     Examples:
         nostage remove-pattern "*.temp.js"
     """
+    check_hook_installed()
+    
     try:
         config = NoStageConfig()
         

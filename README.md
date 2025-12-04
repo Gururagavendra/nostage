@@ -243,6 +243,73 @@ pip uninstall nostage
 ```
 </details>
 
+## 🔧 Troubleshooting
+
+<details>
+<summary><strong>Command not found after installing</strong></summary>
+
+If you get `nostage: command not found` after installation:
+
+**Using pyenv:**
+```bash
+pyenv rehash
+```
+
+**Using system Python or venv:**
+```bash
+# Make sure pip's bin directory is in PATH
+pip show nostage  # Check if installed
+which nostage     # Check if in PATH
+```
+
+**Still not working?**
+```bash
+# Reinstall
+pip uninstall nostage
+pip install nostage
+```
+</details>
+
+<details>
+<summary><strong>Hook not running during commits</strong></summary>
+
+Check if the hook is installed:
+```bash
+nostage status
+```
+
+If not installed:
+```bash
+nostage init
+```
+
+Verify the hook file exists:
+```bash
+ls -la .git/hooks/pre-commit
+```
+</details>
+
+<details>
+<summary><strong>Protected files still getting committed</strong></summary>
+
+1. Verify files are protected:
+   ```bash
+   nostage list
+   ```
+
+2. Check hook status:
+   ```bash
+   nostage status
+   ```
+
+3. Test manually:
+   ```bash
+   git add .
+   git commit -m "test"
+   # You should see "🛡️  NoStage: Protecting..." message
+   ```
+</details>
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
