@@ -54,8 +54,6 @@ test-output.txt
 feature.py
 
 # Private strategy and development files
-REDDIT_STRATEGY.md
-DEVELOPMENT_SUMMARY.md
 notes/
 ideas/
 *.private.*
