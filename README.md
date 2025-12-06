@@ -184,7 +184,7 @@ nostage add test-data.json
 
 ## Requirements
 
-- Python 3.7+
+- >= Python 3.7+
 - Git
 
 ## The `.nostage` File
