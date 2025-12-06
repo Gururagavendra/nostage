@@ -1,4 +1,4 @@
-# 🛡️ NoStage
+# NoStage
 
 [![PyPI version](https://badge.fury.io/py/nostage.svg)](https://pypi.org/project/nostage/)
 [![Python versions](https://img.shields.io/pypi/pyversions/nostage)](https://pypi.org/project/nostage/)
@@ -8,13 +8,13 @@
 
 NoStage is a lightweight CLI tool that automatically unstages protected files when you commit, perfect for temporary debug files, experimental code, and personal workflow files that you don't want in your remote repository.
 
-## 🎥 Demo
+## Demo
 
 ![NoStage Demo](nostage.gif)
 
 See NoStage in action!
 
-## 🎯 Why NoStage?
+## Why NoStage?
 
 Ever had this happen?
 
@@ -27,12 +27,12 @@ debug.js  test-output.txt  my-feature.js  ...
 $ git add .
 $ git commit -m "Add new feature"
 
-# 😱 Oops! debug.js and test-output.txt are now committed!
+# Oops! debug.js and test-output.txt are now committed!
 ```
 
 **NoStage solves this.** Mark files as "protected" once, and they'll never be accidentally committed.
 
-## 🆚 NoStage vs .gitignore
+## NoStage vs .gitignore
 
 | Feature | .gitignore | NoStage |
 |---------|-----------|---------|
@@ -43,12 +43,12 @@ $ git commit -m "Add new feature"
 | **Dynamic** | Static file | Easy add/remove on the fly |
 
 **Perfect for:**
-- 🐛 Debug/test files you create while developing
-- 🧪 Experimental code you're not ready to commit
-- 📝 Personal notes or scratch files
-- 🔧 Local configuration tweaks
+- Debug/test files you create while developing
+- Experimental code you're not ready to commit
+- Personal notes or scratch files
+- Local configuration tweaks
 
-## 🚀 Installation
+## Installation
 
 ```bash
 # Install via pip
@@ -59,7 +59,7 @@ cd your-project
 nostage init
 ```
 
-## 📖 Usage
+## Usage
 
 ### Protect Files
 
@@ -69,8 +69,8 @@ nostage add debug.js test-output.txt scratch.py
 
 # Now commit normally - protected files are auto-unstaged!
 git add .
-git commit -m "my changes"
-# ✅ debug.js, test-output.txt, scratch.py won't be committed
+git commit -m "add to remote"
+# debug.js, test-output.txt, scratch.py won't be committed as they are protected
 ```
 
 ### Protect Patterns
@@ -98,7 +98,7 @@ nostage remove-pattern "*.temp.js"
 nostage status
 ```
 
-## 🎬 How It Works
+## How It Works
 
 1. **You mark files for protection:**
    ```bash
@@ -115,13 +115,13 @@ nostage status
 
 4. **Protected files are auto-unstaged:**
    ```
-   🛡️  NoStage: Protecting 1 file(s) from commit:
+      NoStage: Protecting 1 file(s) from commit:
       • debug.js
    ```
 
-5. **Only your real work gets committed!** ✨
+5. **Only your real work gets committed!**
 
-## 💡 Examples
+## Examples
 
 ### Scenario 1: Debugging
 
@@ -167,7 +167,7 @@ nostage add test-data.json
 # No .gitignore conflicts, everyone's happy! 🎉
 ```
 
-## 🛠️ Commands
+## Commands
 
 | Command | Description |
 |---------|-------------|
@@ -180,14 +180,14 @@ nostage add test-data.json
 | `nostage status` | Show NoStage status |
 | `nostage uninstall` | Remove NoStage hook |
 
-> 💡 **Tip:** Run `nostage --help` for detailed usage information.
+> **Tip:** Run `nostage --help` for detailed usage information.
 
-## ⚙️ Requirements
+## Requirements
 
 - Python 3.7+
 - Git
 
-## 📁 The `.nostage` File
+## The `.nostage` File
 
 NoStage stores your protected files and patterns in a `.nostage` file in your repository root. Since this is for personal use, add it to your `.gitignore`:
 
@@ -195,7 +195,7 @@ NoStage stores your protected files and patterns in a `.nostage` file in your re
 echo ".nostage" >> .gitignore
 ```
 
-## ❓ FAQ
+## FAQ
 
 <details>
 <summary><strong>Q: Does NoStage prevent files from being staged?</strong></summary>
@@ -243,7 +243,7 @@ pip uninstall nostage
 ```
 </details>
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 <details>
 <summary><strong>Command not found after installing</strong></summary>
@@ -306,24 +306,16 @@ ls -la .git/hooks/pre-commit
    ```bash
    git add .
    git commit -m "test"
-   # You should see "🛡️  NoStage: Protecting..." message
+   # You should see "  NoStage: Protecting..." message
    ```
 </details>
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to:
 - Report bugs
 - Suggest features
 - Submit pull requests
-
-## 📝 License
-
-MIT License - feel free to use in your projects!
-
-## 🌟 Show Your Support
-
-If NoStage helps you, give it a ⭐ on GitHub!
 
 ---
 
